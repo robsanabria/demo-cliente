@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- TALLY POPUP SCRIPT -->
+  <script async src="https://tally.so/widgets/embed.js"></script>
+
+  <title>One Page Demo</title>
+
+  <style>
+    :root {
+      --accent: #38bdf8;
+      --text: #ffffff;
+      --overlay: rgba(0, 0, 0, 0.55);
+      --whatsapp: #25D366;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    body { color: var(--text); }
+
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(8px);
+      padding: 1rem 2rem;
+      z-index: 1000;
+    }
+
+    nav ul {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    nav a:hover { color: var(--accent); }
+
+    section {
+      position: relative;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+      overflow: hidden;
+    }
+
+    section::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      z-index: -2;
+      transition: transform 0.8s ease, filter 0.8s ease;
+    }
+
+    section::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: var(--overlay);
+      z-index: -1;
+      transition: background 0.5s ease;
+    }
+
+    section:hover::before {
+      transform: scale(1.08);
+      filter: brightness(1.1);
+    }
+
+    section:hover::after {
+      background: rgba(0, 0, 0, 0.45);
+    }
+
+    #section1::before { background-image: url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee'); }
+    #section2::before { background-image: url('https://images.unsplash.com/photo-1492724441997-5dc865305da7'); }
+    #section3::before { background-image: url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f'); }
+    #section4::before { background-image: url('https://images.unsplash.com/photo-1519389950473-47ba0277781c'); }
+
+    h1 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      text-shadow: 0 4px 20px rgba(0,0,0,0.6);
+    }
+
+    p {
+      margin-top: 1rem;
+      max-width: 600px;
+      opacity: 0.9;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.6);
+    }
+
+    .turnos-content {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s ease;
+    }
+
+    .turnos-content.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* BOTÓN TALLY */
+    .btn-turno {
+      margin-top: 2rem;
+      padding: 1rem 2rem;
+      font-size: 1rem;
+      font-weight: 600;
+      background: var(--accent);
+      color: #000;
+      border: none;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    }
+
+    .btn-turno:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+    }
+
+    #backToTop {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: var(--accent);
+      color: #000;
+      border: none;
+      padding: 0.75rem 1rem;
+      border-radius: 999px;
+      font-weight: bold;
+      cursor: pointer;
+      display: none;
+      z-index: 999;
+    }
+
+    .whatsapp-float {
+      position: fixed;
+      bottom: 30px;
+      left: 30px;
+      width: 60px;
+      height: 60px;
+      background: var(--whatsapp);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+      transition: transform 0.2s;
+    }
+
+    .whatsapp-float:hover { transform: scale(1.1); }
+    .whatsapp-float svg { width: 30px; fill: white; }
+
+    @media (max-width: 600px) {
+      nav ul { gap: 1rem; font-size: 0.9rem; }
+    }
+  </style>
+</head>
+
+<body>
+
+<nav>
+  <ul>
+    <li><a href="#section1">Inicio</a></li>
+    <li><a href="#section2">Servicios</a></li>
+    <li><a href="#section3">Portfolio</a></li>
+    <li><a href="#section4">Turnos</a></li>
+  </ul>
+</nav>
+
+<section id="section1">
+  <div>
+    <h1>Sección 1</h1>
+    <p>Impacto visual fuerte.</p>
+  </div>
+</section>
+
+<section id="section2">
+  <div>
+    <h1>Servicios</h1>
+    <p>Mostrá lo que ofrecés.</p>
+  </div>
+</section>
+
+<section id="section3">
+  <div>
+    <h1>Portfolio</h1>
+    <p>Casos de éxito.</p>
+  </div>
+</section>
+
+<section id="section4">
+  <div class="turnos-content">
+    <h1>Reservá tu turno</h1>
+    <p>Completá el formulario y enviá tu comprobante de transferencia.</p>
+
+    <button 
+      class="btn-turno"
+      data-tally-open="jaQRAY"
+      data-tally-emoji-text="👋"
+      data-tally-emoji-animation="wave">
+      Reservar turno
+    </button>
+
+  </div>
+</section>
+
+<button id="backToTop">↑ Arriba</button>
+
+<a href="https://wa.me/5491123456789" class="whatsapp-float" target="_blank">
+  <svg viewBox="0 0 32 32">
+    <path d="M16 .396C7.164.396 0 7.56 0 16.396c0 2.89.756 5.71 2.192 8.194L.05 32l7.61-2.095a15.94 15.94 0 0 0 8.34 2.3h.006c8.836 0 16-7.164 16-16S24.84.396 16 .396z"/>
+  </svg>
+</a>
+
+<script>
+  const backToTopBtn = document.getElementById("backToTop");
+  const turnosSection = document.querySelector('.turnos-content');
+
+  window.addEventListener("scroll", () => {
+    const scrollPosition = window.innerHeight + window.scrollY;
+    const pageHeight = document.body.offsetHeight;
+    backToTopBtn.style.display = scrollPosition >= pageHeight - 50 ? "block" : "none";
+
+    const trigger = window.innerHeight * 0.85;
+    const sectionTop = turnosSection.getBoundingClientRect().top;
+    if(sectionTop < trigger){
+      turnosSection.classList.add('visible');
+    }
+  });
+
+  backToTopBtn.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+</script>
+
+</body>
+</html>
