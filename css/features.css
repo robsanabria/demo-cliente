@@ -1,0 +1,117 @@
+/* ========== PRELOADER ========== */
+#preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(4px);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 2s ease;
+  opacity: 1;
+}
+
+#preloader.fade-out {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.preloader-content {
+  text-align: center;
+  color: white;
+  max-width: 300px;
+  width: 90%;
+}
+
+.preloader-icon {
+  font-size: 4rem;
+  display: inline-block;
+  animation: pulseSpin 1.5s infinite ease;
+  margin-bottom: 2rem;
+}
+
+@keyframes pulseSpin {
+  0% { transform: scale(1) rotate(0deg); opacity: 0.7; }
+  50% { transform: scale(1.2) rotate(15deg); opacity: 1; }
+  100% { transform: scale(1) rotate(0deg); opacity: 0.7; }
+}
+
+.loading-bar-container {
+  width: 100%;
+  height: 6px;
+  background: rgba(255,255,255,0.3);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+
+.loading-bar-fill {
+  width: 0%;
+  height: 100%;
+  background: var(--accent, #38bdf8);
+  border-radius: 10px;
+  transition: width 0.2s linear;
+}
+
+.loading-percentage {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  font-family: monospace;
+}
+
+.loading-text {
+  font-size: 0.9rem;
+  opacity: 0.9;
+  text-shadow: none;
+  margin-top: 0;
+}
+
+/* ========== CUSTOM CURSOR ========== */
+* {
+  cursor: none !important;
+}
+
+.custom-cursor {
+  position: fixed;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.9);
+  box-shadow: 0 0 5px rgba(0,0,0,0.3);
+  pointer-events: none;
+  z-index: 10000;
+  transform: translate(-50%, -50%);
+  transition: width 0.2s, height 0.2s, background 0.2s, transform 0.1s;
+  will-change: transform;
+  mix-blend-mode: difference;  /* improves visibility on light/dark backgrounds */
+}
+
+/* Hover effects on interactive elements */
+.custom-cursor.hover-link {
+  width: 36px;
+  height: 36px;
+  background: var(--accent, #38bdf8);
+  mix-blend-mode: normal;
+  box-shadow: 0 0 12px rgba(56,189,248,0.6);
+}
+
+/* On sections with background images (semi-transparent effect) */
+section:hover .custom-cursor {
+  background: rgba(255,255,255,0.5);
+  mix-blend-mode: overlay;
+}
+
+/* Hide cursor on touch devices */
+@media (pointer: coarse) {
+  * {
+    cursor: auto !important;
+  }
+  .custom-cursor {
+    display: none;
+  }
+}
